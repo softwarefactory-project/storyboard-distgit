@@ -1,12 +1,13 @@
 [Unit]
 Description=Storyboard Worker Daemon
-After=syslog.target network.target mariadb.service
+After=syslog.target network.target mariadb.service rabbitmq-server.service
 
 [Service]
 Type=simple
 User=storyboard
 Group=storyboard
 EnvironmentFile=-/etc/sysconfig/storyboard
+ExecStartPre=/usr/bin/wait4service $RABBITMQ_SERVER
 ExecStart=/usr/bin/storyboard-worker-daemon --config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf --worker-count 2
 ExecReload=/bin/kill -HUP $MAINPID
 
