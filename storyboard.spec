@@ -2,7 +2,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -45,6 +45,7 @@ Requires:       python2-APScheduler
 Requires:       python-dateutil
 Requires:       python2-oslo-concurrency
 Requires:       python2-oslo-i18n
+Requires:       uwsgi-plugin-python
 
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
@@ -126,5 +127,8 @@ exit 0
 
 
 %changelog
-* Tue Mar 14 2017 Tristan Cacqueray - 0.3.1-1
+* Fri Apr 07 2017 Tristan Cacqueray - 0.0.1-2
+- Use wsgi wrapper instead of wsgiref.simple_server
+
+* Tue Mar 14 2017 Tristan Cacqueray - 0.0.1-1
 - Initial packaging
