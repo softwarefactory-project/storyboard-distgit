@@ -1,14 +1,15 @@
 [Unit]
 Description=Storyboard API Service
-After=syslog.target network.target mariadb.service
+After=syslog.target network.target mariadb.service rabbitmq-server.service
 
 [Service]
 Type=simple
 User=storyboard
 Group=storyboard
+SyslogIdentifier=storyboard
 EnvironmentFile=-/etc/sysconfig/storyboard
-ExecStart=/usr/bin/storyboard-api --config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf
-ExecReload=/bin/kill -HUP $MAINPID
+ExecStartPre=/usr/bin/wait4service $RABBITMQ_SERVER
+ExecStart=/usr/sbin/uwsgi --plugin python --http-socket :20000 --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
 
 [Install]
 WantedBy=multi-user.target
