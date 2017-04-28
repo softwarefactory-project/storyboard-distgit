@@ -1,8 +1,10 @@
-%global commit  d2ca0f0395d9253f1e78e8587712b7d090112fb6
+%global         commit0 6c56506bc5dda0a27b02a3c8d8026c2b9a7e6004
+%global         shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global         checkout 20170428git%{shortcommit0}
 
 Name:           storyboard
 Version:        0.0.1
-Release:        3%{?dist}
+Release:        4.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -127,6 +129,9 @@ exit 0
 
 
 %changelog
+* Fri Apr 28 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-4
+- Bump to last available version this day
+
 * Fri Apr 28 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-3
 - Start 3 uwsgi workers/processes by default
 
