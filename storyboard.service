@@ -8,7 +8,7 @@ User=storyboard
 Group=storyboard
 SyslogIdentifier=storyboard
 EnvironmentFile=-/etc/sysconfig/storyboard
-ExecStart=/usr/sbin/uwsgi --plugin python --http-socket :20000 --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
+ExecStart=/usr/sbin/uwsgi --plugin python --http-socket :20000 -p3 --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
 
 [Install]
 WantedBy=multi-user.target

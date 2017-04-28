@@ -2,7 +2,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -127,6 +127,9 @@ exit 0
 
 
 %changelog
+* Fri Apr 28 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-3
+- Start 3 uwsgi workers/processes by default
+
 * Fri Apr 07 2017 Tristan Cacqueray - 0.0.1-2
 - Use wsgi wrapper instead of wsgiref.simple_server
 
