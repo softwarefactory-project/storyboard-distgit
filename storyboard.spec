@@ -1,13 +1,15 @@
-%global commit  d2ca0f0395d9253f1e78e8587712b7d090112fb6
+%global         commit0 6c56506bc5dda0a27b02a3c8d8026c2b9a7e6004
+%global         shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global         checkout 20170428git%{shortcommit0}
 
 Name:           storyboard
 Version:        0.0.1
-Release:        2%{?dist}
+Release:        3.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
-Source0:        https://github.com/openstack-infra/storyboard/archive/%{commit}.tar.gz
+Source0:        https://github.com/openstack-infra/storyboard/archive/%{commit0}.tar.gz
 Source1:        storyboard.service
 Source2:        storyboard-worker.service
 Source10:       logging.conf
@@ -63,7 +65,7 @@ project work by stakeholders with widely varied interests and needs.
 
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup -n %{name}-%{commit0}
 rm requirements.txt test-requirements.txt
 
 
@@ -128,6 +130,9 @@ exit 0
 
 
 %changelog
+* Fri Apr 28 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-3
+- Bump to last available version this day
+
 * Fri Apr 07 2017 Tristan Cacqueray - 0.0.1-2
 - Use wsgi wrapper instead of wsgiref.simple_server
 
