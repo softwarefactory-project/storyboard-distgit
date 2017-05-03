@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        3.%{checkout}%{dist}
+Release:        4.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -130,6 +130,9 @@ exit 0
 
 
 %changelog
+* Wed May 03 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-4
+- Add a WORKERS env var for uwsgi wrapper
+
 * Fri Apr 28 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-3
 - Bump to last available version this day
 
