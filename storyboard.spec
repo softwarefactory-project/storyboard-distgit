@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        4.%{checkout}%{dist}
+Release:        5.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -130,6 +130,9 @@ exit 0
 
 
 %changelog
+* Fri May 05 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-5
+- Add the so-keepalive option to uwsgi
+
 * Wed May 03 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-4
 - Add a WORKERS env var for uwsgi wrapper
 
