@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        5.%{checkout}%{dist}
+Release:        6.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -130,6 +130,11 @@ exit 0
 
 
 %changelog
+* Wed May 09 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-6
+- Remove so-keepalive option to uwsgi
+- Use http plugin and no longer use http-socket
+- Add --http-keepalive option
+
 * Fri May 05 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-5
 - Add the so-keepalive option to uwsgi
 

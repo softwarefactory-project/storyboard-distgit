@@ -11,7 +11,7 @@ Environment="WORKERS=1"
 Environment="RABBITMQ_SERVER="
 EnvironmentFile=-/etc/sysconfig/storyboard
 ExecStartPre=/usr/bin/wait4service $RABBITMQ_SERVER
-ExecStart=/usr/sbin/uwsgi --lazy-apps --plugin python -p $WORKERS --http-socket :20000 --so-keepalive --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
+ExecStart=/usr/sbin/uwsgi --lazy-apps --plugin http --plugin python -p $WORKERS --http :20000 --http-keepalive --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
 
 [Install]
 WantedBy=multi-user.target
