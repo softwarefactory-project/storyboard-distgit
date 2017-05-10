@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        6.%{checkout}%{dist}
+Release:        7.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -13,6 +13,8 @@ Source0:        https://github.com/openstack-infra/storyboard/archive/%{commit0}
 Source1:        storyboard.service
 Source2:        storyboard-worker.service
 Source10:       logging.conf
+
+Patch0:         0001-Set-wsme-decorator-return-type-to-None-for-some-dele.patch
 
 BuildArch:      noarch
 
@@ -65,7 +67,7 @@ project work by stakeholders with widely varied interests and needs.
 
 
 %prep
-%autosetup -n %{name}-%{commit0}
+%autosetup -n %{name}-%{commit0} -p1
 rm requirements.txt test-requirements.txt
 
 
@@ -130,7 +132,10 @@ exit 0
 
 
 %changelog
-* Wed May 09 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-6
+* Wed May 10 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-7
+- Patch to fix delete responses with body content 
+
+* Tue May 09 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-6
 - Use http plugin and no longer use http-socket
 
 * Fri May 05 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-5
