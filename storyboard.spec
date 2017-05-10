@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        6.%{checkout}%{dist}
+Release:        7.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -130,6 +130,9 @@ exit 0
 
 
 %changelog
+* Wed May 10 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-7
+- Use http-keepalive option
+
 * Wed May 09 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-6
 - Use http plugin and no longer use http-socket
 
