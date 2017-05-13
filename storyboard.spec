@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        7.%{checkout}%{dist}
+Release:        8.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -12,6 +12,7 @@ URL:            http://www.openstack.org/
 Source0:        https://github.com/openstack-infra/storyboard/archive/%{commit0}.tar.gz
 Source1:        storyboard.service
 Source2:        storyboard-worker.service
+Source3:        wsgi.py
 Source10:       logging.conf
 
 Patch0:         0001-Set-wsme-decorator-return-type-to-None-for-some-dele.patch
@@ -49,7 +50,7 @@ Requires:       python2-APScheduler
 Requires:       python-dateutil
 Requires:       python2-oslo-concurrency
 Requires:       python2-oslo-i18n
-Requires:       uwsgi-plugin-python
+Requires:       python-gunicorn
 Requires:       wait4service
 
 BuildRequires:  python2-devel
@@ -82,6 +83,7 @@ PBR_VERSION=%{version} %{__python2} setup.py install --skip-build --root %{build
 rm -R %{buildroot}/usr/etc/
 # Install template in place
 cp -R storyboard/plugin/email/templates %{buildroot}%{python2_sitelib}/storyboard/plugin/email/
+install -p -D -m 0755 %{SOURCE3} %{buildroot}%{python2_sitelib}/storyboard/api/wsgi.py
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/storyboard.service
 install -p -D -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/storyboard-worker.service
 install -p -D -m 0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/storyboard/logging.conf
@@ -132,8 +134,11 @@ exit 0
 
 
 %changelog
+* Sat May 13 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-8
+- Switch to gunicorn
+
 * Wed May 10 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-7
-- Patch to fix delete responses with body content 
+- Patch to fix delete responses with body content
 
 * Tue May 09 2017 Fabien Boucher <fboucher@redhat.com> - 0.0.1-6
 - Use http plugin and no longer use http-socket
