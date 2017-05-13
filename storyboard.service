@@ -11,7 +11,7 @@ Environment="WORKERS=1"
 Environment="RABBITMQ_SERVER="
 EnvironmentFile=-/etc/sysconfig/storyboard
 ExecStartPre=/usr/bin/wait4service $RABBITMQ_SERVER
-ExecStart=/usr/sbin/uwsgi --lazy-apps --plugin http --plugin python -p $WORKERS --http :20000 --wsgi-file /usr/lib/python2.7/site-packages/storyboard/api/app.wsgi --pyargv "--config-file /etc/storyboard/storyboard.conf --log-config-append /etc/storyboard/logging.conf"
+ExecStart=/usr/bin/gunicorn --access-logfile - --access-logformat '%(h)s %(l)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"' --chdir / -b 0.0.0.0:20000 --name storyboard storyboard.api.wsgi
 
 [Install]
 WantedBy=multi-user.target
