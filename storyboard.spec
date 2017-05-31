@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        8.%{checkout}%{dist}
+Release:        9.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -14,6 +14,7 @@ Source1:        storyboard.service
 Source2:        storyboard-worker.service
 Source3:        wsgi.py
 Source10:       logging.conf
+Source11:       worker-logging.conf
 
 Patch0:         0001-Set-wsme-decorator-return-type-to-None-for-some-dele.patch
 
@@ -87,6 +88,7 @@ install -p -D -m 0755 %{SOURCE3} %{buildroot}%{python2_sitelib}/storyboard/api/w
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/storyboard.service
 install -p -D -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/storyboard-worker.service
 install -p -D -m 0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/storyboard/logging.conf
+install -p -D -m 0644 %{SOURCE11} %{buildroot}%{_sysconfdir}/storyboard/worker-logging.conf
 install -p -D -m 0640 etc/storyboard.conf.sample %{buildroot}%{_sysconfdir}/storyboard/storyboard.conf
 
 install -p -d -m 0700 %{buildroot}%{_sharedstatedir}/storyboard
@@ -125,15 +127,20 @@ exit 0
 %{_unitdir}/storyboard.service
 %{_unitdir}/storyboard-worker.service
 %config(noreplace) %attr(0644, root, root) %{_sysconfdir}/storyboard/logging.conf
+%config(noreplace) %attr(0644, root, root) %{_sysconfdir}/storyboard/worker-logging.conf
 %config(noreplace) %attr(0640, root, storyboard) %{_sysconfdir}/storyboard/storyboard.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/storyboard
 %dir %attr(0750, storyboard, storyboard) %{_sharedstatedir}/storyboard
 %dir %attr(0750, storyboard, storyboard) %{_var}/log/storyboard
 %{python2_sitelib}/storyboard
+%exclude %{python2_sitelib}/storyboard/tests
 %{python2_sitelib}/storyboard-*.egg-info
 
 
 %changelog
+* Wed May 31 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-9
+- Add worker-logging.conf
+
 * Sat May 13 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-8
 - Switch to gunicorn
 
