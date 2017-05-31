@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        8.%{checkout}%{dist}
+Release:        9.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -134,6 +134,9 @@ exit 0
 
 
 %changelog
+* Wed May 31 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-9
+- Add worker-logging.conf
+
 * Sat May 13 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-8
 - Switch to gunicorn
 
