@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        8.%{checkout}%{dist}
+Release:        9.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -125,15 +125,20 @@ exit 0
 %{_unitdir}/storyboard.service
 %{_unitdir}/storyboard-worker.service
 %config(noreplace) %attr(0644, root, root) %{_sysconfdir}/storyboard/logging.conf
+%config(noreplace) %attr(0644, root, root) %{_sysconfdir}/storyboard/worker-logging.conf
 %config(noreplace) %attr(0640, root, storyboard) %{_sysconfdir}/storyboard/storyboard.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/storyboard
 %dir %attr(0750, storyboard, storyboard) %{_sharedstatedir}/storyboard
 %dir %attr(0750, storyboard, storyboard) %{_var}/log/storyboard
 %{python2_sitelib}/storyboard
+%exclude %{python2_sitelib}/storyboard/tests
 %{python2_sitelib}/storyboard-*.egg-info
 
 
 %changelog
+* Wed May 31 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-9
+- Add worker-logging.conf
+
 * Sat May 13 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-8
 - Switch to gunicorn
 
