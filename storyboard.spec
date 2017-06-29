@@ -1,10 +1,10 @@
-%global         commit0 6c56506bc5dda0a27b02a3c8d8026c2b9a7e6004
+%global         commit0 197fdd795f999b1978b6f7d51e1ed77adb3f0e7e
 %global         shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global         checkout 20170428git%{shortcommit0}
+%global         checkout 20170628git%{shortcommit0}
 
 Name:           storyboard
 Version:        0.0.1
-Release:        9.%{checkout}%{dist}
+Release:        10.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -15,8 +15,6 @@ Source2:        storyboard-worker.service
 Source3:        wsgi.py
 Source10:       logging.conf
 Source11:       worker-logging.conf
-
-Patch0:         0001-Set-wsme-decorator-return-type-to-None-for-some-dele.patch
 
 BuildArch:      noarch
 
@@ -138,6 +136,9 @@ exit 0
 
 
 %changelog
+* Thu Jun 29 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-10
+- Bump version
+
 * Wed May 31 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-9
 - Add worker-logging.conf
 
