@@ -4,7 +4,7 @@
 
 Name:           storyboard
 Version:        0.0.1
-Release:        10.%{checkout}%{dist}
+Release:        11.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -15,6 +15,9 @@ Source2:        storyboard-worker.service
 Source3:        wsgi.py
 Source10:       logging.conf
 Source11:       worker-logging.conf
+
+Patch0:         0001-Better-handle-pika-connection-errors.patch
+Patch1:         0001-Add-show-attribute-to-the-Task-model.patch
 
 BuildArch:      noarch
 
@@ -136,6 +139,9 @@ exit 0
 
 
 %changelog
+* Tue Jul 11 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-11
+- Backport a couple of fix
+
 * Thu Jun 29 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-10
 - Bump version
 

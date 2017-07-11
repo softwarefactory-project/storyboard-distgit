@@ -1,0 +1,25 @@
+From cdfd9065f09caa90ff579114e0ec611c184c1e33 Mon Sep 17 00:00:00 2001
+From: Tristan Cacqueray <tdecacqu@redhat.com>
+Date: Tue, 11 Jul 2017 03:21:52 +0000
+Subject: [PATCH] Add show attribute to the Task model
+
+Somehow, when adding a new task to a new project, the POST fail with
+400: POST /storyboard_api/tasks: Unknown attribute for argument task: show
+
+Change-Id: Id50bd72246986d4e1e73bf8e686befe83287f4e1
+---
+
+diff --git a/storyboard/api/v1/wmodels.py b/storyboard/api/v1/wmodels.py
+index f4ac476..75d1995c3 100644
+--- a/storyboard/api/v1/wmodels.py
++++ b/storyboard/api/v1/wmodels.py
+@@ -307,6 +307,9 @@
+     Human readable versions are left to the UI.
+     """
+ 
++    show = bool
++    """The show attribute"""
++
+     creator_id = int
+     """Id of the User who has created this Task"""
+ 
