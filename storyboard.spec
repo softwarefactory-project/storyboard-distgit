@@ -1,10 +1,10 @@
-%global         commit0 197fdd795f999b1978b6f7d51e1ed77adb3f0e7e
+%global         commit0 5ecfa05a17b505ce642a64fa7453097437bb8a64
 %global         shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global         checkout 20170628git%{shortcommit0}
+%global         checkout 20181107git%{shortcommit0}
 
 Name:           storyboard
 Version:        0.0.1
-Release:        11.%{checkout}%{dist}
+Release:        12.%{checkout}%{dist}
 Summary:        OpenStack Story Tracking
 
 License:        ASL 2.0
@@ -16,7 +16,6 @@ Source3:        wsgi.py
 Source10:       logging.conf
 Source11:       worker-logging.conf
 
-Patch0:         0001-Better-handle-pika-connection-errors.patch
 Patch1:         0001-Add-show-attribute-to-the-Task-model.patch
 
 BuildArch:      noarch
@@ -31,8 +30,9 @@ Requires:       python2-oslo-config
 Requires:       python2-oslo-context
 Requires:       python2-oslo-utils
 Requires:       python2-pecan
-Requires:       python2-oslo-db
+Requires:       python2-oslo-db >= 4.27.0
 Requires:       python2-oslo-log
+Requires:       python-webob
 Requires:       python2-pika
 Requires:       python-openid
 Requires:       PyYAML
@@ -42,7 +42,6 @@ Requires:       python-sqlalchemy
 Requires:       python2-sqlalchemy-fulltext-search
 Requires:       python2-wsme
 Requires:       python-migrate
-Requires:       python2-eventlet
 Requires:       python2-stevedore
 Requires:       python-tzlocal
 Requires:       python2-email
@@ -139,6 +138,9 @@ exit 0
 
 
 %changelog
+* Thu Nov 22 2018 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-12
+- Bump version
+
 * Tue Jul 11 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.0.1-11
 - Backport a couple of fix
 
